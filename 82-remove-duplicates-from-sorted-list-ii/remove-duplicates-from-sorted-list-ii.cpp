@@ -16,10 +16,6 @@ public:
         ListNode* temp=shead;
         while(head)
         {
-            // if(!head->next){
-            //     temp->next=head;
-            //     break;
-            // }
             int x=head->val;
             if(!head->next or head->next->val!=x)
             {
