@@ -16,12 +16,12 @@ public:
         ListNode* temp=shead;
         while(head)
         {
-            if(!head->next){
-                temp->next=head;
-                break;
-            }
+            // if(!head->next){
+            //     temp->next=head;
+            //     break;
+            // }
             int x=head->val;
-            if(head->next->val!=x)
+            if(!head->next or head->next->val!=x)
             {
                 temp->next=head;
                 temp=head;
@@ -31,7 +31,7 @@ public:
                 while(head and head->val==x){
                     head=head->next;
                 }
-                if(!head) temp->next=head;
+                temp->next=head;
             }
         }
     return shead->next;    
