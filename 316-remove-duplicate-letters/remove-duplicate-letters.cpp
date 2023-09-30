@@ -25,8 +25,6 @@ public:
 
         while(!st.empty()){
             ans+=st.top();
-            // if(a[st.top()-'a']==1) ans+=st.top();
-            // else a[st.top()-'a']--;
             st.pop();
         }
 
