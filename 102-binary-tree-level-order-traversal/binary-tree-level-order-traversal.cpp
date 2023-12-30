@@ -11,9 +11,13 @@
  */
 class Solution {
 public:
-    void util(queue<TreeNode*> q,vector<vector<int>>& ans){
-        if(q.empty()) return;
-        vector<int> v;
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> ans;
+        if(!root) return ans;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty()){
+            vector<int> v;
         int n=q.size();
         for(int i=0;i<n;i++){
             v.push_back(q.front()->val);
@@ -22,14 +26,7 @@ public:
             q.pop();
         }
         ans.push_back(v);
-        util(q,ans);
-    }
-    vector<vector<int>> levelOrder(TreeNode* root) {
-        vector<vector<int>> ans;
-        if(!root) return ans;
-        queue<TreeNode*> q;
-        q.push(root);
-        util(q,ans);
+        }
         return ans;
     }
 };
