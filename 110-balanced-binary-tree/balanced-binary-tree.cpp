@@ -14,9 +14,8 @@ public:
     int getHeight(TreeNode* root){
         if(!root) return 0;
         int lh= getHeight(root->left);
-        if(lh==-1) return -1;
         int rh= getHeight(root->right); 
-        if(rh==-1) return -1;
+        if(lh==-1 or rh==-1) return -1;
         if(abs(rh-lh)>1) return -1;
         return 1+max(lh,rh); 
     }
