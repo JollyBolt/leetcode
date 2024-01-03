@@ -15,11 +15,10 @@ public:
 
     int getMaxSum(TreeNode* root){
         if(!root) return 0;
-        int leftSum = getMaxSum(root->left);
-        int rightSum = getMaxSum(root->right);
-        cout<<leftSum<<" "<<rightSum<<endl;
-        maxi = max({maxi,root->val,root->val+leftSum,root->val+rightSum,leftSum+rightSum+root->val});
-        return root->val + max({0,leftSum,rightSum});
+        int leftSum = max(0,getMaxSum(root->left));
+        int rightSum = max(0,getMaxSum(root->right));
+        maxi = max(maxi,leftSum+rightSum+root->val);
+        return root->val + max(leftSum,rightSum);
     }
     int maxPathSum(TreeNode* root) {
         getMaxSum(root);
