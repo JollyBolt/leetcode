@@ -13,7 +13,7 @@ class Solution {
 public:
     void getRight(TreeNode* root,int level,vector<int>& ans){
         if(!root) return;
-        if(ans.size()<level)
+        if(ans.size()==level)
         ans.push_back(root->val);
         if(root->right) getRight(root->right,level+1,ans);
         if(root->left) getRight(root->left,level+1,ans);
@@ -21,7 +21,7 @@ public:
     vector<int> rightSideView(TreeNode* root) {
         vector<int> ans;
         if(!root) return ans; 
-        getRight(root,1,ans);
+        getRight(root,0,ans);
         return ans;
     }
 };
