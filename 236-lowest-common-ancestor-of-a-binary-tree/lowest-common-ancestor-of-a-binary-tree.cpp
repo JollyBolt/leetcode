@@ -26,12 +26,7 @@ public:
         bool foundA=false,foundB=false;
         getPath(root,p,q,pathA,pathB,foundA,foundB);
         TreeNode* lca = root;
-        // while(!pathB.empty()){
-        //     cout<<pathB.front()->val<<" ";
-        //     pathB.pop_front();
-        // }
         while(!pathA.empty() and !pathB.empty()){
-            // cout<<pathA.front()->val<<" "<<pathB.front()->val<<endl;
             if(pathA.front()==pathB.front()) lca=pathA.front();
             pathA.pop_front();
             pathB.pop_front();
@@ -39,3 +34,5 @@ public:
         return lca;
     }
 };
+
+//This is the Brute Force Solution.
