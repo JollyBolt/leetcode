@@ -24,10 +24,8 @@ public:
     }
     int pseudoPalindromicPaths (TreeNode* root) {
         unordered_map<int,int> m;
-        int odd=0;
         int ans=0;
-        int len=0;
-        util(root,1,odd,ans,m);
+        util(root,1,0,ans,m);
         return ans;
     }
 };
