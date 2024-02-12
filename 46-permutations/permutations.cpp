@@ -13,7 +13,6 @@ public:
     }
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> ans;
-        int n = nums.size();
         util(0,nums,ans);
         return ans;
     }
