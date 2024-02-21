@@ -3,7 +3,7 @@ public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         int m=nums1.size(),n=nums2.size();
         if(m>n) return(findMedianSortedArrays(nums2,nums1));
-        int x = (m+n+1)/2;
+        int x = (m+n)/2;
         int low=0,high=m;
 
         while(low<=high){
@@ -21,8 +21,8 @@ public:
                 if((n+m)%2==0){
                     return double(max(l1,l2)+min(r1,r2))/2;
                 }
-                // else ans = double(min(r1,r2));
-                else return double(max(l1,l2));
+                else return double(min(r1,r2));
+                // else return double(max(l1,l2));
             }
         }
         return 0;
