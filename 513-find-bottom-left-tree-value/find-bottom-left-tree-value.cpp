@@ -11,15 +11,19 @@
  */
 class Solution {
 public:
-    void traverse(TreeNode* root,stack<int>& s,int level){
+    void traverse(TreeNode* root,int& size,int &val,int level){
         if(!root) return;
-        if(level==s.size()) s.push(root->val);
-        traverse(root->left,s,level+1);
-        traverse(root->right,s,level+1);
+        if(level==size){
+            val = root->val;
+            size++;
+        } 
+        traverse(root->left,size,val,level+1);
+        traverse(root->right,size,val,level+1);
     }
     int findBottomLeftValue(TreeNode* root) {
-        stack<int> s;
-        traverse(root,s,0);
-        return s.top();
+        int val;
+        int size=0;
+        traverse(root,size,val,0);
+        return val;
     }
 };
