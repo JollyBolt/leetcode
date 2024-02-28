@@ -11,20 +11,16 @@
  */
 class Solution {
 public:
-    int maxi=0;
-    int getHeight(TreeNode* root){
+    int getHeight(TreeNode* root,int &maxi){
         if(!root) return 0;
-        int lh = getHeight(root->left);
-        int rh = getHeight(root->right);
-        maxi=(max(maxi,lh+rh));
-        return 1 + max(lh,rh);
+        int lh = getHeight(root->left,maxi);
+        int rh = getHeight(root->right,maxi);
+        maxi = max(maxi,lh+rh);
+        return max(lh,rh)+1;
     }
     int diameterOfBinaryTree(TreeNode* root) {
-        if(!root) return 0;
-        getHeight(root);
+        int maxi=INT_MIN;
+        getHeight(root,maxi);
         return maxi;
     }
 };
-/*
-Time Complexity:O(n)
-*/
