@@ -22,32 +22,16 @@ public:
                 TreeNode *node = q.front();
                 q.pop();
                 //Check for even level
-                // cout<<((level>>1)&1)<<" ";
-                if((level&1)==0){
-                    if(((node->val)&1)==0){ //if node->val even
-                        if(i==n-1 or i!=n-1 and node->val>q.front()->val){
-                            if(node->left) q.push(node->left);
-                            if(node->right) q.push(node->right);
-                        }
-                        else return false;
-                    }
-                    else return false;
-                }
-                else{ //Check for odd level
-                    if((node->val&1)){ //if node->val odd
-                        if(i==n-1 or i!=n-1 and node->val<q.front()->val){
-                            if(node->left) q.push(node->left);
-                            if(node->right) q.push(node->right);
-                        }
-                        else return false;
-                    }
-                    else return false;
-                }
+                if(((level&1)==0) and (((node->val)&1) or (i!=n-1 and node->val<=q.front()->val))) return false;
+                //Check for odd level
+                if((level&1) and (((node->val)&1)==0 or (i!=n-1 and node->val>=q.front()->val))) return false;
+
+                if(node->left) q.push(node->left);
+                if(node->right) q.push(node->right);
 
             }
             level++;
         }
-
         return true;
     }
 };
