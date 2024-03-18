@@ -10,9 +10,7 @@ public:
 
             }
             if(hours>h) return false;
-        // cout<<check<<":"<<hours<<" ";
         }
-        if(hours>h) return false;
         return true;
     }
 
