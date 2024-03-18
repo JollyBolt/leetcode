@@ -6,7 +6,7 @@ public:
         for(int i=0;i<n;i++){
             if(piles[i]<=check) hours++;
             else {
-                hours += ceil(double(piles[i])/double(check));
+                hours += ceil(double(piles[i])/(check));
 
             }
             if(hours>h) return false;
