@@ -1,27 +1,36 @@
 class Solution {
 public:
-    bool isValid(int mid,int h,vector<int>& piles){
+    bool isValid(int check,vector<int>& piles, int h){
         int hours=0;
-        for(int i=0;i<piles.size();i++){
-            hours+=ceil(double(piles[i])/mid);
+        int n = piles.size();
+        for(int i=0;i<n;i++){
+            if(piles[i]<=check) hours++;
+            else {
+                hours += ceil(double(piles[i])/double(check));
+
+            }
+            if(hours>h) return false;
+        // cout<<check<<":"<<hours<<" ";
         }
-        cout<<mid<<":"<<hours<<endl;
-        if(hours<=h) return true;
-        return false;
+        if(hours>h) return false;
+        return true;
     }
 
     int minEatingSpeed(vector<int>& piles, int h) {
-        int maxi = piles[0];
-        for(int i=0;i<piles.size();i++){
-            maxi=max(maxi,piles[i]);
+        int n = piles.size();
+        int ans = INT_MAX;
+        int maxBanana = piles[0];
+
+        for(int i=0;i<n;i++){
+            maxBanana = max(maxBanana,piles[i]);
         }
-        int low=1,high=maxi;
-        int ans=maxi;
-        while(low<high){
-            int mid=low + (high-low)/2;
-            if(isValid(mid,h,piles)){
-                ans=min(ans,mid);
-                high=mid;
+
+        int low = 1,high = maxBanana;
+        while(low<=high){
+            int mid = low + (high-low)/2;
+            if(isValid(mid,piles,h)){
+                ans = min(ans,mid);
+                high=mid-1;
             }
             else low=mid+1;
         }
