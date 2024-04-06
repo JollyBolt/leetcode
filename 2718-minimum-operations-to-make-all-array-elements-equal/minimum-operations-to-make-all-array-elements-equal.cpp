@@ -9,10 +9,8 @@ public:
         for(int i=1;i<n;i++) prefix[i]=nums[i]+prefix[i-1];
         for(int i=0;i<queries.size();i++){
             long long ub = upper_bound(nums.begin(),nums.end(),queries[i]) -nums.begin();
-            cout<<ub<<endl;
             long long inc = 0,dec = 0;
             if(ub>0) inc = queries[i]*(ub) - prefix[ub-1];
-            cout<<inc;
             if(ub < n){
                 dec = prefix[n-1] - queries[i]*(n - ub);
                 if(ub>0) dec-=prefix[ub-1];
