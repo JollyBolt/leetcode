@@ -1,6 +1,7 @@
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
+        if(k==nums.size()) return nums;
         int n = nums.size();
         unordered_map<int,int> m;
         priority_queue<pair<int,int>> pq;
