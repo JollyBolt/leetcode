@@ -1,38 +1,27 @@
 class Solution {
 public:
+    //Expand from center function
+    string expand(int left,int right,string s){
+        int n = s.size();
+        while(left>=0 and right<n and s[left]==s[right]){
+            right++;
+            left--;
+        }
+        return s.substr(left+1,right-1-(left+1)+1);
+    }
+
     string longestPalindrome(string s) {
         int n = s.size();
-        int ans=1;
-        string pal=s.substr(0,1);
+        string ans="";
         for(int i=0;i<n;i++){
             int left,right;
             //odd
-            left=i-1,right=i+1;
-            while(left>=0 and right<n and s[left]==s[right]){
-                if(right-left+1>ans){
-                    ans=max(ans,right-left+1);
-                    pal=s.substr(left,right-left+1);
-                }
-                right++;
-                left--;
-            }
+            string odd = expand(i,i,s);
+            if(odd.size()>ans.size()) ans=odd;
             //even
-            if(s[i+1]==s[i]){
-                if(ans<2){
-                    ans=2;
-                    pal=s.substr(i,2);
-                }
-                left=i-1,right=i+2;
-            while(left>=0 and right<n and s[left]==s[right]){
-                if(right-left+1>ans){
-                    ans=max(ans,right-left+1);
-                    pal=s.substr(left,right-left+1);
-                }
-                right++;
-                left--;
-            }
-            }
+            string even = expand(i,i+1,s);
+            if(even.size()>ans.size()) ans=even;
         }
-        return pal;
+        return ans;
     }
 };
