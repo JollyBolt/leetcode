@@ -3,7 +3,7 @@ with my_cte as (
 select * 
 from students st
 cross join subjects sb
-order by st.student_id,sb.subject_name
+-- order by st.student_id,sb.subject_name
 ),
 my_cte2 as (
 select *,count(student_id) as attended_exams
