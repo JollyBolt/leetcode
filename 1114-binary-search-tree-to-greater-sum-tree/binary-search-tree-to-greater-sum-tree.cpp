@@ -11,17 +11,17 @@
  */
 class Solution {
 public:
-    void postOrder(TreeNode* root,int &sum){
+    void reverseInOrder(TreeNode* root,int &sum){
         if(!root) return;
-        if(root->right) postOrder(root->right,sum);
+        if(root->right) reverseInOrder(root->right,sum);
         sum+=root->val;
         root->val = sum;
-        if(root->left) postOrder(root->left,sum);
+        if(root->left) reverseInOrder(root->left,sum);
     }
     TreeNode* bstToGst(TreeNode* root) {
         if(!root) return nullptr;
         int sum=0;
-        postOrder(root,sum);
+        reverseInOrder(root,sum);
         return root;
     }
 };
