@@ -5,16 +5,16 @@ public:
         int sum = accumulate(nums.begin(),nums.end(),0);
         if(sum<abs(target) or (sum+target)%2!=0) return 0;
         int ntarget = (sum+target)/2;
+
+        //Initialization
         vector<vector<int>> dp(n,vector<int>(ntarget+1,0));
         for(int i=0;i<=ntarget;i++){
             if(i==0 and i==nums[0]) dp[0][i] = 2;
             else if(i==0 or i==nums[0]) dp[0][i] = 1;
             else dp[0][i]=0;
         }
-        for(int i=1;i<n;i++){
-            if(nums[i]==0) dp[i][0] =  2;
-            else dp[i][0] = 1;
-        }
+
+        //tabulation
         for(int i=1;i<n;i++){
             for(int j=0;j<=ntarget;j++){
                 int take = 0;
