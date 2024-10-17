@@ -10,7 +10,7 @@ public:
         n=capacity;
     }
     
-    void RU(int key,int value){
+    void makeRecentlyUsed(int key,int value){
         cache.push_front(key);
         mp[key]={cache.begin(),value};
     }
@@ -18,7 +18,7 @@ public:
     int get(int key) {
         if(mp.count(key)!=0){
             cache.erase(mp[key].first);
-            RU(key,mp[key].second);
+            makeRecentlyUsed(key,mp[key].second);
             return mp[key].second;
         }
         return -1;
@@ -28,7 +28,7 @@ public:
         if(mp.count(key)!=0){
             cache.erase(mp[key].first);
         }
-        RU(key,value);
+        makeRecentlyUsed(key,value);
         if(cache.size()>n) {
             mp.erase(cache.back());
             cache.pop_back();
