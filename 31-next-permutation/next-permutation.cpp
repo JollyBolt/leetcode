@@ -7,16 +7,13 @@ public:
             if(nums[ind]<nums[ind+1]) break;
             else ind--;
         }
-        if(ind>=0){
-            int sind=ind+1;
-            int x = nums[sind];
-            for(int i=sind;i<n;i++){
-                if(nums[i]>nums[ind] and nums[i]<=x){
-                    x=nums[i];
-                    sind=i;
+        if(ind>-1){
+            for(int i=n-1;i>ind;i--){
+                if(nums[i]>nums[ind]){
+                    swap(nums[ind],nums[i]);
+                    break;
                 }
             }
-            swap(nums[ind],nums[sind]);
         }
         reverse(nums.begin()+ind+1,nums.end());
     }
