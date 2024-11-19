@@ -11,35 +11,38 @@
  */
 class Solution {
 public:
-    void getParents(TreeNode* root,unordered_map<TreeNode*,TreeNode*>& parents,TreeNode*& target,int start){
+    void getParents(TreeNode* root,unordered_map<TreeNode*,TreeNode*> &m,int start,TreeNode*& target){
         if(!root) return;
-        if(root->val == start) target = root;
-        if(root->left) parents[root->left] = root;
-        if(root->right) parents[root->right] = root;
-        getParents(root->left,parents,target,start);
-        getParents(root->right,parents,target,start);
+        if(root->val==start) target = root;
+        if(root->left){
+            m[root->left] = root;
+            getParents(root->left,m,start,target);
+        }
+        if(root->right){
+            m[root->right] = root;
+            getParents(root->right,m,start,target);
+        }
     }
-
     int amountOfTime(TreeNode* root, int start) {
-        unordered_map<TreeNode*,TreeNode*> parents;
-        int time = -1;
+        unordered_map<TreeNode*,TreeNode*> m;
         TreeNode* target;
-        getParents(root,parents,target,start);
-        unordered_map<TreeNode*,int> visited;
+        getParents(root,m,start,target);
+        unordered_map<TreeNode*,int> burned;
+        int ans=0;
         queue<TreeNode*> q;
         q.push(target);
         while(!q.empty()){
             int n = q.size();
-            for(int i=0;i<n;i++){
-                TreeNode* node = q.front();
-                visited[node] = 1;
+            ans++;
+            while(n--){
+                TreeNode *node = q.front();
                 q.pop();
-                if(node->left and !visited.count(node->left)) q.push(node->left);
-                if(node->right and !visited.count(node->right)) q.push(node->right);
-                if(parents.count(node) and !visited.count(parents[node])) q.push(parents[node]);
+                burned[node]++;
+                if(node->left and burned.count(node->left)==0) q.push(node->left);
+                if(node->right and burned.count(node->right)==0) q.push(node->right);
+                if(m[node] and burned.count(m[node])==0) q.push(m[node]);
             }
-            time++;
         }
-        return time;
+        return ans-1;
     }
 };
